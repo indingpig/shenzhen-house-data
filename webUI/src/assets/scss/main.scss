@@ -1,0 +1,5 @@
+@use './reset.scss';
+@use './root.scss';
+
+@import 'tailwindcss/preflight';
+@import 'tailwindcss/utilities';
