@@ -105,6 +105,7 @@ def insert_data(db_name, target_data):
         insert_sales_data(cursor, month, shen_zheng_total_data)
         conn.commit()
     except Exception as e:
+        conn.rollback()
         print(e)
     finally:
         conn.close()
