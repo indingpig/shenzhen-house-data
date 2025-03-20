@@ -41,7 +41,7 @@ class Captcha:
         image.save(buffered, format="PNG")
         img_base64 = base64.b64encode(buffered.getvalue()).decode()
         self.uuid = self.generate_uuid()
-        return img_base64, self.uuid
+        return img_base64, self.uuid, self.answer
         # image.show()
         # 保存图片
         # image.save("math_captcha_multiple_fonts.png")

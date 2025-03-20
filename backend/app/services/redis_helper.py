@@ -1,21 +1,22 @@
 import redis
 import threading
 import logging
+from backend.app.config import REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, REDIS_DB, REDIS_MAX_CONN
 
 class RedisHelper:
     _pool = None
     _lock = threading.Lock()
-    def __init__(self, password, host='localhost', port=6379, db=0, max_connections=50):
+    def __init__(self):
         if RedisHelper._pool is None:
             with RedisHelper._lock:
                 if RedisHelper._pool is None:
                     RedisHelper._pool = redis.ConnectionPool(
-                        host=host,
-                        port=port,
-                        password=password,
-                        db=db,
+                        host=REDIS_HOST,
+                        port=REDIS_PORT,
+                        password=REDIS_PASSWORD,
+                        db=REDIS_DB,
                         decode_responses=True,
-                        max_connections=max_connections
+                        max_connections=REDIS_MAX_CONN
                     )
         self.client = redis.Redis(connection_pool=RedisHelper._pool)
         self.logger = logging.getLogger(__name__)
@@ -25,6 +26,7 @@ class RedisHelper:
         handler.setFormatter(formatter)
         self.logger.addHandler(handler)
 
+    """设置验证码"""
     def set_captcha(self, captcha_id: str, answer: str, expire: int=120):
         try:
             self.client.setex(captcha_id, expire, answer)
@@ -43,7 +45,7 @@ class RedisHelper:
 
     def delete(self, captcha_id: str):
         try:
-            self.client.delete()
+            self.client.delete(captcha_id)
             self.logger.info(f"Delete captcha {captcha_id}")
         except Exception as e:
             self.logger.error(f"Error deleting captcha: {e}")
