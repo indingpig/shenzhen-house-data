@@ -8,3 +8,11 @@ export function getLoginCodeApi() {
     method: 'get',
   });
 }
+
+export function loginApi(data: Login.LoginRequestData) {
+  return request<Login.LoginResponseData>({
+    url: 'auth/login',
+    method: 'post',
+    data,
+  });
+}

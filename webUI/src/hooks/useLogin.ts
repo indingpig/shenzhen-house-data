@@ -1,10 +1,11 @@
 import { ref, computed, reactive, onMounted } from 'vue';
-import { getLoginCodeApi } from '@/api/login';
+import { getLoginCodeApi, loginApi } from '@/api/login';
 
 interface Login {
   username: string;
   password: string;
   code: string;
+  uuid: string;
 }
 
 export const useLogin = () => {
@@ -13,16 +14,19 @@ export const useLogin = () => {
     username: '',
     password: '',
     code: '',
+    uuid: '',
   });
   const codeUrl = ref<string>('');
   const createCode = () => {
     getLoginCodeApi().then((res) => {
-      console.log(res);
+      loginForm.uuid = res.data.uuid;
       codeUrl.value = 'data:image/png;base64,' + res.data.img;
     });
   };
   const login = () => {
-    console.log('login');
+    loginApi(loginForm).then((res) => {
+      console.log(res);
+    });
   };
   const bgStyle = computed(() => {
     return {
