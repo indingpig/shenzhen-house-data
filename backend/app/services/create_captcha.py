@@ -1,6 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont,ImageFilter
 import random
 import os
+from io import BytesIO
+import base64
 import uuid
 
 # 使用相对路径
@@ -12,7 +14,7 @@ FONT_PATHS = [fp for fp in REQUIRED_FONTS if os.path.exists(fp)]
 
 
 class Captcha:
-    def __init__(self, width=160, height=60, font_size=36, font_paths=FONT_PATHS):
+    def __init__(self, width=160, height=50, font_size=36, font_paths=FONT_PATHS):
         self.answer = None
         self.expression = None
         self.draw = None
@@ -20,7 +22,7 @@ class Captcha:
         self.height = height
         self.font_size = font_size
         self.font_paths = font_paths
-        self.uuid = self.generate_uuid()
+        self.uuid = None
 
     def generate_captcha(self):
         # 创建空白图片
@@ -34,7 +36,13 @@ class Captcha:
         self.add_points()
         # 模糊处理（让 OCR 更难识别）
         image = image.filter(ImageFilter.GaussianBlur(radius=0.6))
-        image.show()
+        # 将图片转换为 Base64
+        buffered = BytesIO()
+        image.save(buffered, format="PNG")
+        img_base64 = base64.b64encode(buffered.getvalue()).decode()
+        self.uuid = self.generate_uuid()
+        return img_base64, self.uuid
+        # image.show()
         # 保存图片
         # image.save("math_captcha_multiple_fonts.png")
 
@@ -47,7 +55,7 @@ class Captcha:
         if not self.draw:
             raise ValueError('Please generate captcha first')
         for char in self.expression:
-            font_size = random.randint(30, 40)  # 每个字符随机字体大小
+            font_size = 30  # 每个字符随机字体大小
             font = ImageFont.truetype(random.choice(FONT_PATHS), font_size)
             bbox = self.draw.textbbox((0, 0), char, font=font)
             text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
@@ -108,4 +116,4 @@ class Captcha:
         return random.randint(100000, 999999)
 
 captcha_image = Captcha()
-captcha_image.generate_captcha()
+# captcha_image.generate_captcha()
