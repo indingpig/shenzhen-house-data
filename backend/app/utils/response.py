@@ -1,27 +1,31 @@
 from flask import jsonify, make_response, request
+import json
 from functools import wraps
 # 定义通用的响应包装函数
-def wrap_response(data=None, error=None, status_code=200, message=None):
+def wrap_response(data=None, message=None, status_code=200, code=None):
     response_dict = {
-        "status": "success" if error is None else "error",
+        "status": status_code is 200,
+        "success": message is None,
         "data": data,
-        "code": status_code,
-        "message": error if error else "",
+        "code": code,
+        "message": message if message else "",
     }
-    return make_response(jsonify(response_dict), status_code)
+    print(data, message, status_code, message)
+    response_json = json.dumps(response_dict, ensure_ascii=False)  # 确保中文字符不转换
+    return make_response(response_json, status_code, {"Content-Type": "application/json"})
 
 class BaseResource:
     """基础资源类，提供通用 API 响应"""
 
     @staticmethod
-    def success(data=None, status_code=200):
+    def success(data=None, message=None, status_code=200, code=200):
         """返回成功响应"""
-        return wrap_response(data, status_code=status_code)
+        return wrap_response(data, message, status_code=status_code, code=code)
 
     @staticmethod
-    def error(data=None, message="Error", status_code=400):
+    def error(data=None, message="Error", status_code=400, code=400):
         """返回失败响应"""
-        return wrap_response(data, message, status_code)
+        return wrap_response(data, message, status_code, code)
 
     @staticmethod
     def paginate(queryset, page=1, per_page=10):
