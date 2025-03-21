@@ -1,0 +1,108 @@
+2025-03-21 10:59:48,075 - INFO - Error getting Bing picture: 'NoneType' object is not subscriptable
+2025-03-21 11:00:37,625 - INFO - Error getting Bing picture: 'NoneType' object is not subscriptable
+2025-03-21 11:01:00,769 - INFO - Error getting Bing picture: 'NoneType' object is not subscriptable
+2025-03-21 11:01:22,111 - INFO - Error getting Bing picture: 'NoneType' object is not subscriptable
+2025-03-21 11:01:43,894 - INFO - Error getting Bing picture: 'images'
+2025-03-21 11:02:20,544 - INFO - Error getting Bing picture: 'dict' object has no attribute 'data'
+2025-03-21 11:02:43,718 - INFO - Error getting Bing picture: 'dict' object has no attribute 'imageUrls'
+GET /api/v1/auth/get_bing_picture
+API: /api/v1/auth/get_bing_picture, 状态码: 200
+GET /api/v1/auth/get_bing_picture
+API: /api/v1/auth/get_bing_picture, 方法: get_bing_picture, 错误: 'dict' object has no attribute 'ultraHighDef'
+API: /api/v1/auth/get_bing_picture, 状态码: 400
+GET /api/v1/auth/get_bing_picture
+API: /api/v1/auth/get_bing_picture, 方法: get_bing_picture, 错误: 'dict' object has no attribute 'ultraHighDef'
+API: /api/v1/auth/get_bing_picture, 状态码: 400
+2025-03-21 11:15:28,019 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:15:28,412 - ERROR - API: /api/v1/auth/get_bing_picture, 方法: get_bing_picture, 错误: 'dict' object has no attribute 'ultraHighDef'
+2025-03-21 11:15:28,412 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 400
+2025-03-21 11:15:56,367 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:15:56,743 - ERROR - API: /api/v1/auth/get_bing_picture, 方法: get_bing_picture, 错误: 'dict' object has no attribute 'ultraHighDef'
+2025-03-21 11:15:56,744 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 400
+2025-03-21 11:16:20,700 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:16:20,861 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:16:23,191 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:16:23,586 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:17:18,465 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:17:18,506 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:17:23,598 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:17:23,947 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:17:54,786 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:17:54,806 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:18:43,271 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:18:43,304 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:19:05,890 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:19:05,900 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:19:48,094 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:19:48,103 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:19:59,382 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:19:59,389 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:20:05,597 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:20:05,983 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:20:41,219 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:20:41,227 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:20:46,037 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:20:46,400 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:20:49,069 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:20:49,466 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:20:57,815 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:20:58,203 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:21:03,124 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:21:03,493 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:21:04,421 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:21:04,781 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:21:05,984 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:21:06,338 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:22:09,156 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:22:09,207 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:22:12,348 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:22:12,722 - ERROR - API: /api/v1/auth/get_bing_picture, 方法: get_bing_picture, 错误: list indices must be integers or slices, not str
+2025-03-21 11:22:12,723 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 400
+2025-03-21 11:22:37,490 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:22:37,897 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:22:41,967 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:22:42,322 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:22:44,757 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:22:45,114 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:22:46,534 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:22:46,927 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:23:37,824 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:23:37,825 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:23:37,870 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:23:38,215 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:23:43,501 - INFO - GET /api/v1/auth/captchaImage
+2025-03-21 11:23:43,502 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:23:43,515 - INFO - API: /api/v1/auth/captchaImage, 状态码: 200
+2025-03-21 11:23:43,901 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:30,065 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:30,472 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:31,112 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:31,492 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:33,796 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:34,185 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:35,361 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:35,754 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:48,050 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:48,434 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:50,039 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:50,440 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:51,920 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:52,272 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:53,693 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:54,065 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:54,951 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:55,313 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:55,687 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:56,041 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:56,730 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:57,097 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:57,725 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:58,091 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:28:58,829 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:28:59,184 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:29:00,127 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:29:00,507 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:29:01,858 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:29:02,238 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
+2025-03-21 11:29:03,057 - INFO - GET /api/v1/auth/get_bing_picture
+2025-03-21 11:29:03,423 - INFO - API: /api/v1/auth/get_bing_picture, 状态码: 200
