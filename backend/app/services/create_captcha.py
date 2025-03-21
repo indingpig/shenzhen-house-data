@@ -59,10 +59,10 @@ class Captcha:
             font = ImageFont.truetype(random.choice(FONT_PATHS), font_size)
             bbox = self.draw.textbbox((0, 0), char, font=font)
             text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
-            total_text_width += text_width + 5  # 适当增加间距
+            total_text_width += text_width + 2  # 适当增加间距
             char_sizes.append((font, text_width, text_height))
         # 计算起始 x 位置
-        x = (self.width - total_text_width) // 2
+        x = ((self.width - total_text_width) // 2)
         y_base = (self.height - max(h for _, _, h in char_sizes)) // 2
         return x, y_base, char_sizes
 
@@ -99,14 +99,14 @@ class Captcha:
             num1 = random.randint(1, 10)
             num2 = random.randint(1, 10)
         elif operator == '-':
-            num1 = random.randint(1, 20)
+            num1 = random.randint(1, 10)
             num2 = random.randint(1, num1)
         elif operator == '*':
             num1 = random.randint(1, 10)
             num2 = random.randint(1, 10)
         else:
             num2 = random.randint(1, 10)
-            num1 = num2 * random.randint(1, 10)  # 避免除法结果为小数
+            num1 = num2 * random.randint(1, 5)  # 避免除法结果为小数
         expression = f"{num1} {operator} {num2} = ?"
         answer = int(eval(f"{num1} {operator} {num2}"))
         return expression, answer
