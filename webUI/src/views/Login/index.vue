@@ -35,6 +35,11 @@
           </el-form-item>
         </el-form>
       </div>
+      <el-button-group class="fixed bottom-2 right-10">
+        <el-button size="default" color="#666" type="primary" @click="previous" :icon="ArrowLeftBold"
+          circle></el-button>
+        <el-button size="default" color="#666" type="primary" @click="next" :icon="ArrowRightBold" circle></el-button>
+      </el-button-group>
     </div>
   </div>
 </template>
@@ -42,13 +47,13 @@
 <script setup lang="ts">
 import { useLogin } from '@/hooks/useLogin';
 import { useUserStore } from '@/store/modules/user';
-import { ElForm, ElFormItem, ElInput, ElButton, ElImage, ElIcon } from 'element-plus';
-import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
+import { ElForm, ElFormItem, ElInput, ElButton, ElImage, ElIcon, ElButtonGroup } from 'element-plus';
+import { User, Lock, Key, Picture, Loading, ArrowLeftBold, ArrowRightBold } from "@element-plus/icons-vue"
 defineOptions({
   name: 'LoginPage'
 })
 const userStore = useUserStore()
-const { bgStyle, loginForm, codeUrl, createCode, login } = useLogin();
+const { bgStyle, loginForm, codeUrl, createCode, login, previous, next } = useLogin();
 </script>
 
 <style scoped lang="scss">

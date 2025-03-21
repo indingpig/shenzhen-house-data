@@ -16,3 +16,11 @@ export function loginApi(data: Login.LoginRequestData) {
     data,
   });
 }
+
+export function getBingImgApi(day: number) {
+  return request({
+    url: 'auth/get_bing_picture',
+    method: 'get',
+    params: { day },
+  }) as Promise<{ url: string }>;
+}
