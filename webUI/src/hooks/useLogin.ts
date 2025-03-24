@@ -1,5 +1,7 @@
 import { ref, computed, reactive, onMounted } from 'vue';
 import { getLoginCodeApi, loginApi, getBingImgApi } from '@/api/login';
+import { useRouter } from 'vue-router';
+import { Local } from '@/utils/storage';
 
 interface Login {
   username: string;
@@ -18,6 +20,7 @@ export const useLogin = () => {
   });
   const codeUrl = ref<string>('');
   const dayCount = ref<number>(0);
+  const router = useRouter();
   const createCode = () => {
     getLoginCodeApi().then((res) => {
       loginForm.uuid = res.uuid;
@@ -25,9 +28,17 @@ export const useLogin = () => {
     });
   };
   const login = () => {
-    loginApi(loginForm).then((res) => {
-      console.log(res);
-    });
+    loginApi(loginForm)
+      .then((res) => {
+        console.log(res);
+        Local.set('token', res.token);
+        router.push({
+          name: 'Dashboard',
+        });
+      })
+      .catch(() => {
+        createCode();
+      });
   };
   const previous = () => {
     dayCount.value++;

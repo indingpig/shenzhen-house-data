@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 import { useUserStore } from '@/store/modules/user';
 import { ElMessage } from 'element-plus';
 import { get, merge } from 'lodash-es';
-import { getToken } from './cookies';
+import { Local } from './storage';
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */
 function logout() {
@@ -16,7 +16,10 @@ function createService() {
   const service = axios.create();
   // 请求拦截
   service.interceptors.request.use(
-    (config) => config,
+    (config) => {
+      // 在请求头中携带 Token
+      return config;
+    },
     // 发送失败
     (error) => Promise.reject(error),
   );
@@ -105,7 +108,7 @@ function createService() {
 /** 创建请求方法 */
 function createRequest(service: AxiosInstance) {
   return function <T>(config: AxiosRequestConfig): Promise<T> {
-    const token = getToken();
+    const token = Local.get('toekn');
     const defaultConfig = {
       headers: {
         // 携带 Token
