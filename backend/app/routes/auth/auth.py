@@ -1,13 +1,18 @@
 from flask import Blueprint, jsonify, request, current_app
 from datetime import datetime, timedelta
 import requests
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 from backend.app.config import API_PREFIX
 from backend.app.services.create_captcha import captcha_image
 from backend.app.utils.response import BaseResource
 from backend.app.services.redis_helper import RedisHelper
+from backend.app.utils.db_utils import check_password, hash_password
 
 auth_bp = Blueprint("auth", __name__, url_prefix=f"{API_PREFIX}/auth")
 redis_helper = RedisHelper()  # 🔥 在接口文件中实例化 RedisHelper
+
+bcrypt = Bcrypt()
 
 @auth_bp.route("/captchaImage", methods=["GET"])
 def get_captcha_image():
@@ -19,6 +24,7 @@ def get_captcha_image():
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
+    db = current_app.config["DATABASE"]  # **复用 app.py 里的 Database 实例**
     """登录"""
     data = request.json
     username = data.get("username")
@@ -35,8 +41,18 @@ def login():
         return BaseResource.success(message="验证码已过期，请重新获取", code=1100)
     if captcha.lower() != correct_answer:
         return BaseResource.success(message="验证码错误", code=1100)
+    # 从数据库中获取用户信息
+    db_user = db.fetch_one("SELECT * FROM users WHERE username=?", (username,))
+    if not db_user:
+        return BaseResource.success(message="用户或密码错误", code=1100)
+    # 校验密码
+    if not check_password(password, db_user[2]):
+        return BaseResource.success(message="用户或密码错误", code=1100)
 
-    return BaseResource.success(data={"token": "fake_token"})
+    # 生成 Token
+    access_token = create_access_token(identity=username)
+
+    return BaseResource.success(data={"token": access_token})
 
 @auth_bp.route("/get_bing_picture", methods=["GET"])
 def get_bing_picture():
