@@ -2,23 +2,21 @@ from flask import Blueprint, jsonify, request, current_app
 from datetime import datetime, timedelta
 import requests
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager, create_access_token, create_refresh_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from backend.app.config import API_PREFIX
-from backend.app.services.create_captcha import captcha_image
 from backend.app.utils.response import BaseResource
-from backend.app.services.redis_helper import RedisHelper
+from backend.app.utils.captch_utils import create_captcha, check_captcha
 from backend.app.utils.db_utils import check_password, hash_password
 
 auth_bp = Blueprint("auth", __name__, url_prefix=f"{API_PREFIX}/auth")
-redis_helper = RedisHelper()  # 🔥 在接口文件中实例化 RedisHelper
+# redis_helper = RedisHelper()  # 🔥 在接口文件中实例化 RedisHelper
 
 bcrypt = Bcrypt()
 
 @auth_bp.route("/captchaImage", methods=["GET"])
 def get_captcha_image():
     """获取验证码图片"""
-    img_base64, uuid, answer = captcha_image.generate_captcha()
-    redis_helper.set_captcha(uuid, answer)
+    img_base64, uuid = create_captcha()
     return BaseResource.success(data={"img": img_base64, "uuid": uuid})
 
 
@@ -33,14 +31,9 @@ def login():
     uuid = data.get("uuid")
     print(username, password, captcha, uuid)
     # 校验验证码
-    if not captcha or not uuid:
-        return BaseResource.success(message="请先获取验证码",code=1100)
-    correct_answer = redis_helper.get_captcha(uuid)
-    redis_helper.delete(uuid)
-    if not correct_answer:
-        return BaseResource.success(message="验证码已过期，请重新获取", code=1100)
-    if captcha.lower() != correct_answer:
-        return BaseResource.success(message="验证码错误", code=1100)
+    messages, result = check_captcha(uuid, captcha)
+    if not result:
+        return BaseResource.success(message=messages, code=1100)
     # 从数据库中获取用户信息
     db_user = db.fetch_one("SELECT * FROM users WHERE username=?", (username,))
     if not db_user:
@@ -50,9 +43,14 @@ def login():
         return BaseResource.success(message="用户或密码错误", code=1100)
 
     # 生成 Token
-    access_token = create_access_token(identity=username)
+    access_token = create_access_token(identity=username, expires_delta=timedelta(hours=1))
 
     return BaseResource.success(data={"token": access_token})
+
+@auth_bp.route("logout", methods=["POST"])
+def logout():
+    """登出"""
+    return BaseResource.success(message="登出成功")
 
 @auth_bp.route("/get_bing_picture", methods=["GET"])
 def get_bing_picture():
