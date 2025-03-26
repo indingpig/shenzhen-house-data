@@ -17,9 +17,6 @@ def auth_required(func):
     module_name = func.__module__.split(".")[-2]  # 获取 Blueprint 所在目录名
     url_prefix = f"/api/v1/{module_name}"  # 生成 Blueprint 对应的前缀
     full_route = f"{url_prefix}/{func.__name__}"  # 计算完整路径
-    print(module_name)
-    print(url_prefix)
-    print(full_route)
     # 记录该路由需要鉴权
     protected_routes.add(full_route)
     return wrapper
