@@ -6,6 +6,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from backend.app.config import API_PREFIX
 from backend.app.utils.response import BaseResource
 from backend.app.utils.captch_utils import create_captcha, check_captcha
+from backend.app.utils.token_utils import create_token
 from backend.app.utils.db_utils import check_password, hash_password
 
 auth_bp = Blueprint("auth", __name__, url_prefix=f"{API_PREFIX}/auth")
@@ -43,7 +44,9 @@ def login():
         return BaseResource.success(message="用户或密码错误", code=1100)
 
     # 生成 Token
-    access_token = create_access_token(identity=username, expires_delta=timedelta(hours=1))
+    access_token = create_token(username)
+    if not access_token:
+        return BaseResource.error(message="登录失败", code=1100)
 
     return BaseResource.success(data={"token": access_token})
 
