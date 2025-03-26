@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import { ElIcon } from "element-plus";
 import { Expand, Fold } from "@element-plus/icons-vue"
 const props = withDefaults(defineProps<{
   isActive: boolean

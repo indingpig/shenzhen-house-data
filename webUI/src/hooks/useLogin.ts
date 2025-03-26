@@ -1,5 +1,5 @@
 import { ref, computed, reactive, onMounted } from 'vue';
-import { getLoginCodeApi, loginApi, getBingImgApi } from '@/api/login';
+import { getLoginCodeApi, loginApi, getBingImgApi, logoutApi } from '@/api/login';
 import { useRouter } from 'vue-router';
 import { Local } from '@/utils/storage';
 
@@ -39,6 +39,15 @@ export const useLogin = () => {
       .catch(() => {
         createCode();
       });
+  };
+  const logout = () => {
+    logoutApi().then(() => {
+      Local.remove('token');
+      router.push({
+        name: 'Login',
+      });
+      // 我的web服务器使用python和flask来写，并使用JWT方案来添加token，那么如何设置token得时效？当用户退出登录的时候我要如何将token设置成失效？
+    });
   };
   const previous = () => {
     dayCount.value++;
@@ -83,6 +92,7 @@ export const useLogin = () => {
     codeUrl,
     createCode,
     login,
+    logout,
     previous,
     next,
   };

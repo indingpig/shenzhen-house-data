@@ -17,6 +17,13 @@ export function loginApi(data: Login.LoginRequestData) {
   });
 }
 
+export function logoutApi() {
+  return request({
+    url: 'auth/logout',
+    method: 'post',
+  });
+}
+
 export function getBingImgApi(day: number) {
   return request({
     url: 'auth/get_bing_picture',
