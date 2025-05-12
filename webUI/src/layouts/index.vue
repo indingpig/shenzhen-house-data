@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper w-full h-full relative">
-    <Sidebar class="h-full fixed w-28" />
-    <div class="main-container ml-28 h-full relative">
+    <Sidebar class="h-full fixed w-48" />
+    <div class="main-container ml-48 h-full relative">
       <NavigationBar class="h-[60px]" />
       <AppMain />
     </div>
