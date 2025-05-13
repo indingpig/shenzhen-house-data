@@ -1,14 +1,17 @@
 import { ref } from 'vue';
 import { pinia } from '@/store';
 import { defineStore } from 'pinia';
-import { getToken, removeToken } from '@/utils/cookies';
+import { useRouter } from 'vue-router';
+import { Local } from '@/utils/storage';
 
 export const useUserStore = defineStore('user', () => {
-  const token = ref<string>(getToken() || '');
+  const token = ref<string>(Local.get('token') || '');
   const username = ref<string>('');
+  const router = useRouter();
   const logout = () => {
-    removeToken();
+    Local.remove('token');
     token.value = '';
+    router.push('/login');
   };
   return {
     token,

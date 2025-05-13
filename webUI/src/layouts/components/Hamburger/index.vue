@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleClick">
+  <div @click="toggleClick" class="cursor-pointer">
     <el-icon :size="20" class="icon">
       <Fold v-if="props.isActive" />
       <Expand v-else />

@@ -1,27 +1,25 @@
 <template>
-  <div>
-    <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
-      <router-link v-if="theOnlyOneChild.meta" :to="theOnlyOneChild.path">
-        <el-menu-item :index="theOnlyOneChild.path">
-          <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
-          <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
-          <template v-if="theOnlyOneChild.meta.title" #title>
-            {{ theOnlyOneChild.meta.title }}
-          </template>
-        </el-menu-item>
-      </router-link>
+  <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
+    <router-link v-if="theOnlyOneChild.meta" :to="theOnlyOneChild.path">
+      <el-menu-item :index="theOnlyOneChild.path">
+        <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
+        <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
+        <template v-if="theOnlyOneChild.meta.title" #title>
+          {{ theOnlyOneChild.meta.title }}
+        </template>
+      </el-menu-item>
+    </router-link>
+  </template>
+  <el-sub-menu v-else :index="props.item.path" teleported>
+    <template #title>
+      <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" />
+      <component v-else-if="props.item.meta?.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
+      <span v-if="props.item.meta?.title">{{ props.item.meta.title }}</span>
     </template>
-    <el-sub-menu v-else :index="props.item.path" teleported>
-      <template #title>
-        <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" />
-        <component v-else-if="props.item.meta?.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
-        <span v-if="props.item.meta?.title">{{ props.item.meta.title }}</span>
-      </template>
-      <template v-if="props.item.children">
-        <SidebarItem v-for="child in showingChildren" :key="child.path" :item="child" :base-path="child.path" />
-      </template>
-    </el-sub-menu>
-  </div>
+    <template v-if="props.item.children">
+      <SidebarItem v-for="child in showingChildren" :key="child.path" :item="child" :base-path="child.path" />
+    </template>
+  </el-sub-menu>
 </template>
 
 <script setup lang="ts">
